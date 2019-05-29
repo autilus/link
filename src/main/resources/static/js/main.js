@@ -71,7 +71,7 @@ Vue.component('message-row', {
         '<span style="position: absolute; right: 0;">' +
         '<input type="button" value="Edit" @click="edit" />' +
         '<input type="button" value="X" @click="del" />' +
-        '<a v-bind:href="`/`+message.id">localhost:8080/message/{{message.id}}</a>'+
+        '<a v-bind:href="`/`+message.id">localhost:8080/{{message.id}}</a>'+
         '</span>' +
 
         '</div>',
