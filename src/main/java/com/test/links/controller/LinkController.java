@@ -42,8 +42,11 @@ public class LinkController {
     @JsonView(Views.FullMessage.class)
 
     public String getOne(@PathVariable("id") Link link) {
+        Long i= Long.valueOf(1);
+        i++;
         try {
             if (isUrlValid(link.getLink())){
+                link.setQuantity(i);
                 return "<script>window.location.replace('"+link.getLink()+"');</script>";
             }else {
                 throw new ResponseStatusException(
@@ -76,7 +79,7 @@ public class LinkController {
             @PathVariable("id") Link linkFromDb,
             @RequestBody Link link
     ) {
-        BeanUtils.copyProperties(link, linkFromDb, "id, user_id");
+        BeanUtils.copyProperties(link, linkFromDb, "id","userId", "creationDate");
         return linkRepo.save(linkFromDb);
     }
 

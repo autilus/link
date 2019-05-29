@@ -10,36 +10,19 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table
-@ToString(of = {"id", "link","about"})
+@ToString(of = {"id", "link","about","userId"})
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(Views.Id.class)
     private Long id;
 
-    public String getComment() {
-        return about;
-    }
-
-    public void setComment(String about) {
-        this.about = about;
-    }
-
-    @JsonView(Views.IdName.class)
     private String link;
-    @JsonView(Views.IdName.class)
+
     private String about;
+    @Column(updatable = true)
+    private Long quantity;
 
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    @JsonView(Views.Id.class)
     private String userId;
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -61,14 +44,42 @@ public class Link {
     public void setText(String text) {
         this.link = text;
     }
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
 }
